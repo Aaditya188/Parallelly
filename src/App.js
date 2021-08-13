@@ -1,15 +1,14 @@
 import "./styles.css";
-import Content from "../components/content.js";
-import Split from "../components/Split.js";
-import Wallet from "../components/activity.js";
-import UserProfile from "../components/userProfile.js";
+import Content from "./components/content.js";
+import Split from "./components/Split.js";
+import Wallet from "./components/activity.js";
+import UserProfile from "./components/userProfile.js";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Sidebar from "../components/sidebar";
-import Login from "../components/LoginSignup/login";
+import Sidebar from "./components/sidebar";
+import Login from "./components/LoginSignup/login";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { auth } from "./Firebase";
-import Loading from "../components/Loading";
 import {
   FaRegCopy,
   FaList,
@@ -63,9 +62,6 @@ export default function App() {
     /*document.oncontextmenu = new Function("return false;");
     document.onselectstart = new Function("return false;");*/
   }, [user]);
-  if (false) {
-    return <Loading />;
-  }
   return (
     <Router>
       <Route exact path="/">
