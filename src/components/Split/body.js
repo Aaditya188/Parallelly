@@ -451,7 +451,7 @@ function body() {
                     className="flex width-100 justify align"
                     style={{ fontSize: "20px" }}
                   >
-                    <span>Per person cost:{" s"}</span>
+                    <span>Per person cost:{" $ "}</span>
                     <span>
                       {groups.length > 0
                         ? Math.round(total / groups.length)
