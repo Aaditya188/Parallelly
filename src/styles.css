@@ -1206,7 +1206,7 @@ tr {
   padding-top: 25px;
   border-radius: 0px 0px 10px 10px;
   padding-bottom: 25px;
-  color: #00773d;
+  color: var(--Green);
   line-height: 30px;
 }
 .paid p {
@@ -1217,16 +1217,16 @@ tr {
   width: 190px;
   margin: 0 auto;
 }
-.container {
-  width: 350px;
-  margin: 50px auto;
-}
-.tab {
-  width: 350px;
-  margin: 0 auto;
-  height: 10px;
-  background-color: #2b2929;
-  border-radius: 50px;
+.paid_card {
+  background-color: #fafaf9;
+  padding-top: 20px;
+  width: 300px;
+  height: auto;
+  margin: -5px auto;
+
+  -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 .receipt {
   background-color: #fafaf9;
@@ -1245,7 +1245,7 @@ tr {
   margin: 0 auto;
 }
 .title {
-  color: #00773d;
+  color: var(--Green);
   margin-top: 20px;
   margin-left: 10px;
   font-weight: bold;
@@ -1254,26 +1254,13 @@ tr {
   line-height: 30px;
 }
 .date {
-  color: #00773d;
-  margin-top: 20px;
-  margin-right: 10px;
-  font-weight: lighter;
-  float: right;
+  color: var(--Green);
+  font-weight: light;
   font-size: 12px;
-  line-height: 30px;
 }
-table {
-  clear: both;
-  width: 95%;
-  margin: 0 auto;
-  color: #5b5b5b;
-  font-size: 12px;
-  padding-top: 10px;
-  padding-bottom: 20px;
-  border-bottom: 1px dashed #ccc;
-}
+
 input[type="button"] {
-  background-color: #00874c;
+  background-color: var(--Green);
   outlie: none;
   border: 1px solid #ccc;
   padding: 10px;

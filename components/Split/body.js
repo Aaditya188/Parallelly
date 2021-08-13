@@ -15,6 +15,7 @@ import { Popover } from "@material-ui/core";
 function body() {
   const [receipt, setreceipt] = useState(false);
   const [Data, SetData] = useState(DATA);
+  const [nowdate, Setnowdate] = useState("");
   const [list, updateList] = useState(DATA[0].friends);
   const [name, setName] = useState("");
   const [index, Setindex] = useState(0);
@@ -244,22 +245,29 @@ function body() {
                 className="addmyfrnd cbtn"
                 style={{ padding: "5px 10px" }}
                 onClick={() => {
-                  if (total === 0) {
-                    var s = 0;
-                    groups.map((user) => {
-                      s = s + parseInt(user.total);
-                    });
-                    Settotal(s);
-                  }
+                  var s = 0;
+                  groups.map((user) => {
+                    s = s + parseInt(user.total);
+                  });
+                  Settotal(s);
 
                   Settotalappear(true);
                 }}
               >
                 Split Now
               </a>
-              <a className="addmyfrnd text_align" onClick={()=>{
-                setreceipt(!receipt)
-              })}>
+              <a
+                className="addmyfrnd text_align"
+                onClick={() => {
+                  var t = new Date(Date.now() * 1000);
+                  var formatted =
+                    ("0" + t.getHours()).slice(-2) +
+                    ":" +
+                    ("0" + t.getMinutes()).slice(-2);
+                  Setnowdate(formatted);
+                  setreceipt(!receipt);
+                }}
+              >
                 Pay Your Half
               </a>
             </div>
@@ -443,7 +451,7 @@ function body() {
                     className="flex width-100 justify align"
                     style={{ fontSize: "20px" }}
                   >
-                    <span>Per person cost: </span>
+                    <span>Per person cost:{" s"}</span>
                     <span>
                       {groups.length > 0
                         ? Math.round(total / groups.length)
@@ -458,17 +466,46 @@ function body() {
           </div>
         </div>
         {receipt ? (
-          <div className="receipt absolute">
-            <div className="paper flex flex-col justify align">
-              <div className="title">Receipt</div>
-              <div className="date">Date: 20/07/2013</div>
-              <div>
-                {groups.length > 0 ? Math.round(total / groups.length) : 0}
-              </div>
-              <div className="sign center flex flex-col justify align">
-                <div className="barcode"></div>
-                0123456789
-                <div className="thankyou">Thank you for your business</div>
+          <div className="absolute flex flex-col justify align">
+            <div className="paid paid_card  white_space no-hover flex justify align text-align width-100">
+              <p>Paid successfully</p>
+            </div>
+            <div className="receipt width-100">
+              <div className="paper flex flex-col justify align width-100">
+                <div className="title">Receipt</div>
+                <div
+                  className="flex justify align width-100"
+                  style={{
+                    gap: "30px",
+                    padding: "10px 0",
+                    marginBottom: "20px"
+                  }}
+                >
+                  <div className="date ">Date: {nowdate}</div>
+                  <div className=" white_space ">
+                    Total amount: $
+                    {groups.length > 0 ? Math.round(total / groups.length) : 0}
+                  </div>
+                </div>
+                <div
+                  className="sign center flex flex-col justify align"
+                  style={{ gap: "15px" }}
+                >
+                  <div className="barcode"></div>
+                  0123456789
+                  <div className="thankyou">Thank you for your business</div>
+                  <input
+                    type="button"
+                    value="Pay Now"
+                    onClick={() => {
+                      $(".receipt").slideUp("slow");
+                      $(".paid").slideDown("slow");
+                      setTimeout(function () {
+                        setreceipt(false);
+                      }, 5000);
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
