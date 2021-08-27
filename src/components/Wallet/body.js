@@ -1,14 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import DATA from "../../Data/demo_post_data.js";
 import {
-  Receipt,
+  Wallet,
   FileEarmarkArrowUpFill,
   WalletFill
 } from "react-bootstrap-icons";
+import $ from "jquery";
 import Card from "./card";
 import Table from "./history";
 const data = DATA[0].wallet[0].card;
 function body() {
+  const [receipt, setreceipt] = useState(false);
+  const [nowdate, Setnowdate] = useState("");
   useEffect(() => {
     document.querySelector(".flex-2").style.display = "flex";
   }, []);
@@ -29,9 +32,23 @@ function body() {
             </div>
             <div className="card card-2 flex justify align">
               <div className="white-circle">
-                <Receipt />
+                <Wallet />
               </div>
-              <div>Send Money</div>
+              <div>
+                <a
+                  onClick={() => {
+                    var t = new Date(Date.now() * 1000);
+                    var formatted =
+                      ("0" + t.getHours()).slice(-2) +
+                      ":" +
+                      ("0" + t.getMinutes()).slice(-2);
+                    Setnowdate(formatted);
+                    setreceipt(!receipt);
+                  }}
+                >
+                  Add Money
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -42,11 +59,55 @@ function body() {
             balance={cards.balance}
             valid={cards.valid}
             cardHolder={cards.card_holder}
-            cardNum={cards.card_num}
+            // cardNum={cards.card_num}
           />
         ))}
         <Table table={DATA[0]} />
       </div>
+      {receipt ? (
+        <div className="absolute flex flex-col justify align">
+          <div className="paid paid_card  white_space no-hover flex justify align text-align width-100">
+            <p>Money Added Successfully</p>
+          </div>
+          <div className="receipt width-100">
+            <div className="paper flex flex-col justify align width-100">
+              <div className="title">Add Money</div>
+              <div
+                className="flex justify align width-100"
+                style={{
+                  gap: "30px",
+                  padding: "10px 0",
+                  marginBottom: "20px"
+                }}
+              >
+                <div className="date ">Date: {nowdate}</div>
+                <div className=" white_space ">Total amount: $ 10</div>
+              </div>
+              <div
+                className="sign center flex flex-col justify align"
+                style={{ gap: "15px" }}
+              >
+                <div className="barcode"></div>
+                0123456789
+                <div className="thankyou">Thank you for your business</div>
+                <input
+                  type="button"
+                  value="Pay Now"
+                  onClick={() => {
+                    $(".receipt").slideUp("slow");
+                    $(".paid").slideDown("slow");
+                    setTimeout(function () {
+                      setreceipt(false);
+                    }, 3000);
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

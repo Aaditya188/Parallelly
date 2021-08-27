@@ -4,7 +4,9 @@ import { useState } from "react";
 import Notify from "./NotificationList";
 import { auth } from "../Firebase";
 import DATA from "../Data/demo_post_data";
-function Header() {
+import { useSelector } from "react-redux";
+function Header(props) {
+  const Datas = useSelector((state) => state.alluser.user);
   const [show, setShow] = useState(false);
   // Function to open Modal
   const close = () => {
@@ -25,9 +27,9 @@ function Header() {
           <div className="user">
             <img src={DATA[0].prof_image} />
           </div>
-         <div className="user-name">{DATA[0].name}</div>
+          <div className="user-name">{Datas ? Datas.name : DATA[0].name}</div>
           <div className="hover-icon" onClick={open}>
-            <Badge content={DATA[0].notify}>
+            <Badge content={Datas ? 1 : DATA[0].notify}>
               <Bell />
             </Badge>
           </div>

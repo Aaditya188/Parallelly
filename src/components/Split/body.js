@@ -8,13 +8,14 @@ import {
   Modal,
   Whisper,
   Notification,
-  ButtonToolbar
+  ButtonToolbar,
+  Badge
 } from "rsuite";
 import Color from "../../Data/color";
 import { Popover } from "@material-ui/core";
+import { useSelector } from "react-redux";
 function body() {
   const [receipt, setreceipt] = useState(false);
-  const [Data, SetData] = useState(DATA);
   const [nowdate, Setnowdate] = useState("");
   const [list, updateList] = useState(DATA[0].friends);
   const [name, setName] = useState("");
@@ -97,7 +98,7 @@ function body() {
   }
   return (
     <div>
-      <div className="body-title">Parallel - Split</div>
+      <div className="body-title">Parallelly - Split</div>
       <div
         className="flex width-100 justify align"
         style={{ gap: "20px", padding: "20px 30px" }}
@@ -107,7 +108,6 @@ function body() {
             className="absolute width-100 justify align text_align "
             style={{ top: "15px" }}
           >
-            <div>Select your friends</div>
             <div
               className="flex width-100"
               style={{ gap: "10px", padding: "5px 20px" }}
@@ -115,6 +115,7 @@ function body() {
             >
               <input
                 type="search"
+                placeholder="Search your friends"
                 value={name}
                 onChange={filter}
                 className="width-100 srchfrnd create_srch"
@@ -136,7 +137,10 @@ function body() {
                 foundUsers.map((user) => (
                   <li key={user.id} className="user_render">
                     <span className="flex">
-                      <div>
+                      <div
+                        className="flex justify align"
+                        style={{ gap: "20px" }}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -147,12 +151,24 @@ function body() {
                         >
                           <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                         </svg>
+                        <Badge
+                          style={{ background: "#4d5c67" }}
+                          content={user.rating}
+                        ></Badge>
                       </div>
                     </span>
                     <span className="user_list_name">{user.name}</span>
-                    <a className="addmyfrnd" onClick={() => addfrnd(user)}>
-                      Add
-                    </a>
+                    <div className="flex justify align" style={{ gap: "20px" }}>
+                      <a className="addmyfrnd" onClick={() => addfrnd(user)}>
+                        Add
+                      </a>
+                      <a
+                        className="addmyfrnd "
+                        style={{ color: "#FF2442", fontWeight: "400" }}
+                      >
+                        Report
+                      </a>
+                    </div>
                   </li>
                 ))
               ) : (
@@ -173,7 +189,8 @@ function body() {
               <input
                 className="width-100 create_srch"
                 style={{ flex: "1", padding: "0 20px", height: "40px" }}
-                placholder="Group Name"
+                placeholder="Group Name"
+                type="text"
                 onChange={(e) => Setgname(e.target.value)}
               />
               <input
@@ -205,7 +222,7 @@ function body() {
               <input
                 className="width-100 create_srch"
                 style={{ flex: "1", padding: "0 20px", height: "40px" }}
-                placholder="Join a Group"
+                placeholder="Join a Group"
               />
               <a className="addmyfrnd jbtn" style={{ flex: "0.2" }}>
                 Join
@@ -227,7 +244,7 @@ function body() {
               }}
             >
               <span style={{ fontSize: "20px" }}>
-                {dogname ? gname : " Group Name:"}
+                {dogname ? gname : " Group Name"}
               </span>
               <a
                 className="addmyfrnd"
@@ -274,7 +291,13 @@ function body() {
             <div>
               <div
                 className="flex flex-col"
-                style={{ marginBottom: "30px" }}
+                style={{
+                  marginBottom: "30px",
+                  overflow: " auto",
+                  maxHeight: "300px",
+                  height: "100%",
+                  paddingBottom: "30px"
+                }}
                 className={dogname ? "" : ""}
               >
                 {groups && groups.length > 0 ? (
@@ -451,7 +474,7 @@ function body() {
                     className="flex width-100 justify align"
                     style={{ fontSize: "20px" }}
                   >
-                    <span>Per person cost:{" $ "}</span>
+                    <span>Per person cost:{" $"}</span>
                     <span>
                       {groups.length > 0
                         ? Math.round(total / groups.length)
@@ -502,7 +525,7 @@ function body() {
                       $(".paid").slideDown("slow");
                       setTimeout(function () {
                         setreceipt(false);
-                      }, 5000);
+                      }, 3000);
                     }}
                   />
                 </div>

@@ -7,6 +7,7 @@
   "dependencies": {
     "@material-ui/core": "4.12.3",
     "@material-ui/styles": "4.11.4",
+    "axios": "0.21.1",
     "bootstrap-js-buttons": "1.0.1",
     "firebase": "8.8.1",
     "float-input": "0.0.2",
@@ -29,6 +30,7 @@
     "react-scripts": "4.0.0",
     "react-toggle": "4.1.2",
     "redux": "4.1.1",
+    "redux-thunk": "2.3.0",
     "routes.js": "0.0.1",
     "rsuite": "4.10.2",
     "rsuite-utils": "2.2.1"

@@ -10,3 +10,18 @@ export const userReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+/*
+export const saveNotes = () => async (dispatch, getState) => {
+  const notes = getState().notes;
+  await fetch("http://localhost:4000/notes", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-type": "application/json"
+    },
+    body: JSON.stringify(notes)
+  });
+  alert("Success");
+};
+*/

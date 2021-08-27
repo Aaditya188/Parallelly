@@ -17,26 +17,16 @@ import {
   GrRefresh
 } from "react-icons/fa";
 import { RiSendPlaneFill, RiDeleteBin6Line } from "react-icons/ri";
-/*import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "./redux/actions/userActions";*/
-
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "./redux/actions/userActions";
 export default function App() {
-  const [Data, SetData] = useState({});
+  const [Data, SetData] = useState([]);
   const [user, SetUser] = useState(true);
   const [username, setUsername] = useState("");
-  /*const dispatch = useDispatch();
-  const fetchData = async () => {
-    const response = await axios
-      .get("https://apimaking.herokuapp.com/users/610e42fb08a02a081466f892")
-      .catch((err) => {
-        console.log(err);
-      });
-    SetData(response.data);
-    dispatch(setUser(response.data));
-  };
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchData();
-  }, []);*/
+    dispatch(setUser());
+  }, []);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -62,6 +52,7 @@ export default function App() {
     /*document.oncontextmenu = new Function("return false;");
     document.onselectstart = new Function("return false;");*/
   }, [user]);
+
   return (
     <Router>
       <Route exact path="/">

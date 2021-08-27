@@ -1,17 +1,13 @@
 const data = [
   {
-    name: "Yash Joshi",
+    name: "User Name",
     email: "abc@gmail.com",
-    notify: 6,
+    notify: 1,
     mode: "light",
     notify_data: [
       {
         id: 0,
-        msg: "Aditya just paid you $100 !"
-      },
-      {
-        id: 2,
-        msg: "Time to pay Yash $100"
+        msg: "Welcome to Parallely !"
       }
     ],
     prof_image:
@@ -29,7 +25,7 @@ const data = [
       },
       {
         id: 1,
-        groupName: "Bhhot",
+        groupName: "Bhoot",
         totalMembers: 2
       }
     ],
@@ -38,6 +34,7 @@ const data = [
         id: 0,
         name: "Shivam Singh",
         total: 0,
+        rating: "4.8",
         owe: [
           {
             id: 0,
@@ -50,6 +47,7 @@ const data = [
         id: 1,
         name: "Aaditya Prakash",
         total: 0,
+        rating: "4.7",
         owe: [
           {
             id: 0,
@@ -62,6 +60,7 @@ const data = [
         id: 2,
         name: "Ambuj Porwarl",
         total: 0,
+        rating: "4.5",
         owe: [
           {
             id: 0,
@@ -74,6 +73,7 @@ const data = [
         id: 3,
         name: "Pushp Paritosh",
         total: 0,
+        rating: "4.1",
         owe: [
           {
             id: 0,
@@ -86,6 +86,46 @@ const data = [
         id: 4,
         name: "Manas Khare",
         total: 0,
+        rating: "4.5",
+        owe: [
+          {
+            id: 0,
+            money: 0,
+            hex_index: -1
+          }
+        ]
+      },
+      {
+        id: 5,
+        name: "Rahul Agrahari",
+        total: 0,
+        rating: "4.2",
+        owe: [
+          {
+            id: 0,
+            money: 0,
+            hex_index: -1
+          }
+        ]
+      },
+      {
+        id: 6,
+        name: "Deepraj Singh",
+        total: 0,
+        rating: "4.4",
+        owe: [
+          {
+            id: 0,
+            money: 0,
+            hex_index: -1
+          }
+        ]
+      },
+      {
+        id: 7,
+        name: "Abhishek Biswal",
+        total: 0,
+        rating: "3.8",
         owe: [
           {
             id: 0,
@@ -104,17 +144,17 @@ const data = [
         paid: 5,
         table: [
           {
-            id: 1,
+            _id: 1,
             gname: "Paari-125",
             amount: 300
           },
           {
-            id: 2,
+            _id: 2,
             gname: "Dominators",
             amount: 500
           },
           {
-            id: 3,
+            _id: 3,
             gname: "BroCoders",
             amount: 1000
           }

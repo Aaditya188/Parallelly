@@ -1,24 +1,26 @@
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 function table(props) {
+  const Datas = useSelector((state) => state.alluser.user);
   return (
     <div>
       <Table striped bordered hover>
         <tbody>
           <tr>
             <td>Name : </td>
-            <td>{props.table.name}</td>
+            <td>{Datas ? Datas.name : props.table.name}</td>
           </tr>
           <tr>
             <td>Contact : </td>
-            <td>{props.table.phone}</td>
+            <td>{Datas ? Datas.phone : props.table.phone}</td>
           </tr>
           <tr>
             <td>City : </td>
-            <td>{props.table.address}</td>
+            <td>{Datas ? Datas.address : props.table.address}</td>
           </tr>
           <tr>
             <td>Aadhar : </td>
-            <td>{props.table.aadhar}</td>
+            <td>{Datas ? Datas.aadhar : props.table.aadhar}</td>
           </tr>
         </tbody>
       </Table>
